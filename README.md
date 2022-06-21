@@ -36,5 +36,5 @@ You can check the default setting and use it from line 25 to 34 ```<Code_path>/t
 # Reference
 Reference [Paper](https://arxiv.org/abs/2010.11531)(3DV 2020)
 
-Official Code(Tensorflow) [Github](https://github.com/assafshocher/ZSSR](https://github.com/eth-ait/motion-infilling/tree/be814cfe971ec58d0e66c7644db3cdc89f71d092) 
+Official Code(Tensorflow) [Github](https://github.com/eth-ait/motion-infilling/tree/be814cfe971ec58d0e66c7644db3cdc89f71d092) 
 
