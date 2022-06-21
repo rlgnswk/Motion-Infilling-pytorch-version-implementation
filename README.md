@@ -1,10 +1,10 @@
 # Convolutional Autoencoders for Human Motion Infilling(Pytorch)
 
-Unofficial Implementation
+### Unofficial Implementation
 
-Batch normalization is added for stable training.
+### Batch normalization is added for stable training.
 
-Additional: This codes are used for [Content controllable motion infilling](https://github.com/rlgnswk/Content-controllable-motion-infilling)
+### Additional: This codes are used for [Content controllable motion infilling](https://github.com/rlgnswk/Content-controllable-motion-infilling)
 
 -----------------
 
