@@ -1,6 +1,6 @@
 # Convolutional Autoencoders for Human Motion Infilling(Pytorch)
 
-Unofficial Implemenation
+Unofficial Implementation
 
 Batch normalization is added for stable training.
 
