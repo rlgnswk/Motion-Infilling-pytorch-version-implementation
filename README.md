@@ -2,8 +2,7 @@
 
 Unofficial Implemenation
 
-Note: batch normalization is added for stable training.
-
+Batch normalization is added for stable training.
 
 -----------------
 
