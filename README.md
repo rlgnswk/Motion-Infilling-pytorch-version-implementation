@@ -1,5 +1,6 @@
-# Implementation: Convolutional Autoencoders for Human Motion Infilling(Pytorch)
+# Convolutional Autoencoders for Human Motion Infilling(Pytorch)
 Unofficial personal code
+
 Note: I added batch normalization for stable training.
 
 
@@ -12,25 +13,21 @@ Note: I added batch normalization for stable training.
 ----------
 # Usage:
 
-##Data
+## Data
+
 1. Get data from [Here](https://theorangeduck.com/page/deep-learning-framework-character-motion-synthesis-and-editing)
-2. Prepocessing by using code from official [Github](https://github.com/assafshocher/ZSSR](https://github.com/eth-ait/motion-infilling/tree/be814cfe971ec58d0e66c7644db3cdc89f71d092)
+2. Prepocessing by using code from official [Github](https://github.com/eth-ait/motion-infilling/tree/be814cfe971ec58d0e66c7644db3cdc89f71d092)
 
 
-
-## Run on your data:
-You can find additional dataset 
-from [Here](https://drive.google.com/file/d/16L961dGynkraoawKE2XyiCh4pdRS-e4Y/view) 
-provided by [MZSR](https://github.com/JWSoh/MZSR) (CVPR 2020)
-
-First, put your data files in ```<ZSRGAN_path>/datasets/```
-
-The results will save in ```<ZSRGAN_path>/experiments/```
+## Run on the code:
 
 ```
-python train.py --name <save_result_path> --dataset <name_of_your_dataset> --GT_path <HR_folder_in_your_dataset> --LR_path <LR_folder_in_your_dataset>
+python train.py --name <name_of_experiment> --datasetPath <your_train_data_path> --ValdatasetPath <your_valid/test_data_path> 
 ```
 
+The results will save in ```<Code_path>/experiments(default)/```
+
+You can check the default setting and use it from line 25 to 34 ```<Code_path>/train.py```
 
 # Reference
 Reference [Paper](https://arxiv.org/abs/2010.11531)(3DV 2020)
