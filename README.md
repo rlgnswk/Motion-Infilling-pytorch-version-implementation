@@ -14,8 +14,6 @@ Note: batch normalization is added for stable training.
 </p>
 
 
-[Result1](./fig/imple_result.gif){: width="75%" height="75%"}
-
 ----------
 # Usage:
 
