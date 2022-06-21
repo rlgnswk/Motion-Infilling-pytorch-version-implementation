@@ -8,7 +8,7 @@ Note: I added batch normalization for stable training.
 
 ## Result:
 
-[Result1](./fig/imple_result.gif)
+[Result1](./fig/imple_result.gif){: width="75%" height="75%"}
 
 ----------
 # Usage:
