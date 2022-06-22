@@ -21,7 +21,7 @@
 ## Data
 
 1. Get data from [Holden et al](https://theorangeduck.com/page/deep-learning-framework-character-motion-synthesis-and-editing)
-2. Pre-pocessing by using code from official [Kaufmann et al](https://github.com/eth-ait/motion-infilling/tree/be814cfe971ec58d0e66c7644db3cdc89f71d092)
+2. Pre-pocessing by using code from [Kaufmann et al](https://github.com/eth-ait/motion-infilling/tree/be814cfe971ec58d0e66c7644db3cdc89f71d092)
 
 
 ## Run on the code:
