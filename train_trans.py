@@ -17,7 +17,7 @@ from torchinfo import summary
 
 import models
 import utils
-import data_load
+import data_load_trans as data_load
 #input sample of size 69 × 240
 #latent space 3 × 8 × 256 tensor
 
@@ -70,6 +70,7 @@ def main(args):
         total_root_loss = 0
 
         total_v_loss = 0
+        total_root_v_loss = 0
         
         if train_dataset.masking_length_mean < 120 and num_epoch is not 0 and num_epoch%10 == 0:
             train_dataset.masking_length_mean = train_dataset.masking_length_mean + 10
@@ -95,8 +96,8 @@ def main(args):
             #total_loss += train_loss.item()
             train_loss_root = loss_function(pred[:, :, -1, :], gt_image[:, :, -1, :]) + loss_function(pred[:, :, -2, :], gt_image[:, :, -2, :]) +loss_function(pred[:, :, -3, :], gt_image[:, :, -3, :])
             
-            total_train_loss = train_loss #+ train_loss_root * 10
-            
+            total_train_loss = train_loss + train_loss_root * 5
+
             total_root_loss += train_loss_root.item()
             total_loss += total_train_loss.item()
             
@@ -126,11 +127,11 @@ def main(args):
                 pred = model(masked_input)
 
             val_loss = loss_function(pred, gt_image.detach())
-            #val_loss_root = loss_function(pred[:, :, -7, :], gt_image[:, :, -7, :]) + loss_function(pred[:, :, -6, :], gt_image[:, :, -6, :]) +loss_function(pred[:, :, -5, :], gt_image[:, :, -5, :])
-            
-            total_val_loss = val_loss #+ val_loss_root * 10
+            val_loss_root = loss_function(pred[:, :, -1, :], gt_image[:, :, -1, :]) + loss_function(pred[:, :, -2, :], gt_image[:, :, -2, :]) +loss_function(pred[:, :, -3, :], gt_image[:, :, -3, :])
+
+            total_val_loss = val_loss + val_loss_root * 5
             total_v_loss += total_val_loss.item()
-            
+            total_root_v_loss += val_loss_root.item()
             model.train()
             
         #pred = data_load.De_normalize_data_dist(pred.detach().squeeze(1).permute(0,2,1).cpu().numpy(), 0.0, 1.0)
@@ -139,10 +140,12 @@ def main(args):
         
         saveUtils.save_result(pred, gt_image, masked_input, num_epoch)
         valid_epoch_loss = total_v_loss/len(valid_dataloader)
-        log = "Valid: [Epoch %d] [Valid Loss: %.4f]" % (num_epoch, valid_epoch_loss)
+        valid_epoch_root_loss = total_root_v_loss/len(valid_dataloader)
+        log = "Valid: [Epoch %d] [Valid Loss: %.4f] [Valid Root Loss: %.4f]" % (num_epoch, valid_epoch_loss, valid_epoch_root_loss)
         print(log)
         saveUtils.save_log(log)
-        writer.add_scalar("Valid Loss/ Epoch", valid_epoch_loss, num_epoch)    
+        writer.add_scalar("Valid Loss/ Epoch", valid_epoch_loss, num_epoch)  
+        writer.add_scalar("Valid Root Loss/ Epoch", valid_epoch_root_loss, num_epoch)     
         saveUtils.save_model(model, num_epoch) # save model per epoch
         #validation per epoch ############
         

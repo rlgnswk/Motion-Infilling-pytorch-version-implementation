@@ -8,7 +8,6 @@ import torch.optim as optim
 import os
 import random
 
-
 class MotionLoader(Dataset):
         def __init__(self, root, IsNoise=False, IsTrain=True, dataset_mean=None, dataset_std=None):
             super(MotionLoader, self).__init__()
@@ -34,10 +33,14 @@ class MotionLoader(Dataset):
         
         def __getitem__(self, idx):
             #load item #processing
-            gt_image = self.remove_foot_contacts(self.data[idx]) # remove_foot_contacts  (240 , 73) --> (240 , 69)
-            #switch (240 , 69) --> (69, 240)
+            
+            #gt_image = self.remove_foot_contacts(self.data[idx]) # remove_foot_contacts  (240 , 73) --> (240 , 69)
+            gt_image = self.data[idx]
             gt_image = np.transpose(gt_image)
-
+            #switch (240 , 69) --> (69, 240)
+            gt_image = self.remove_foot_contacts2(gt_image)
+            
+        
             #get masked input
       
             masking_length = round(np.random.normal(self.masking_length_mean, 20.0)) # std 20
@@ -77,7 +80,10 @@ class MotionLoader(Dataset):
             assert data.shape[1] == 73
             return np.delete(data, obj=list(range(data.shape[1] - 4, data.shape[1])), axis=1)
         
-
+        def remove_foot_contacts2(self, data): # chaneel 73 -> 69, 69 is baseline 
+            assert data.shape[0] == 73
+            return np.delete(data, obj=list(range(data.shape[0] - 4, data.shape[0])), axis=0)
+                        
         
         def noise(self, option = True):
             if option == True:
