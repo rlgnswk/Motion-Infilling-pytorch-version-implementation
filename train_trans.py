@@ -94,8 +94,8 @@ def main(args):
             train_loss = loss_function(pred, gt_image)
 
             #total_loss += train_loss.item()
-            train_loss_root = loss_function(pred[:, :, -1, :], gt_image[:, :, -1, :]) + loss_function(pred[:, :, -2, :], gt_image[:, :, -2, :]) +loss_function(pred[:, :, -3, :], gt_image[:, :, -3, :])
-            
+            #train_loss_root = loss_function(pred[:, :, -1, :], gt_image[:, :, -1, :]) + loss_function(pred[:, :, -2, :], gt_image[:, :, -2, :]) +loss_function(pred[:, :, -3, :], gt_image[:, :, -3, :])
+            train_loss_root = loss_function(pred[:, :, -1, :], gt_image[:, :, -1, :])
             total_train_loss = train_loss + train_loss_root * 5
 
             total_root_loss += train_loss_root.item()
@@ -127,8 +127,9 @@ def main(args):
                 pred = model(masked_input)
 
             val_loss = loss_function(pred, gt_image.detach())
-            val_loss_root = loss_function(pred[:, :, -1, :], gt_image[:, :, -1, :]) + loss_function(pred[:, :, -2, :], gt_image[:, :, -2, :]) +loss_function(pred[:, :, -3, :], gt_image[:, :, -3, :])
-
+            #val_loss_root = loss_function(pred[:, :, -1, :], gt_image[:, :, -1, :]) + loss_function(pred[:, :, -2, :], gt_image[:, :, -2, :]) +loss_function(pred[:, :, -3, :], gt_image[:, :, -3, :])
+            val_loss_root = loss_function(pred[:, :, -1, :], gt_image[:, :, -1, :])
+            
             total_val_loss = val_loss + val_loss_root * 5
             total_v_loss += total_val_loss.item()
             total_root_v_loss += val_loss_root.item()
