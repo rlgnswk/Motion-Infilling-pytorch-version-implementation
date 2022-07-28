@@ -2,7 +2,7 @@
 
 #### Batch normalization is added for stable training.
 
-#### Additional: This codes are used for [Content controllable motion infilling](https://github.com/rlgnswk/Content-controllable-motion-infilling)
+#### Additional: This codes are used for [Content controllable motion infilling](https://github.com/rlgnswk/Content-controllable-motion-infilling) (Personal project)
 
 -----------------
 
