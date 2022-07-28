@@ -1,6 +1,5 @@
 # Human Motion Infilling(Pytorch)
 
-#### Batch normalization is added for stable training.
 
 -----------------
 
